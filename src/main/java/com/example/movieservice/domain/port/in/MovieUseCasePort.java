@@ -16,7 +16,7 @@ import org.springframework.data.domain.Pageable;
 //   MoviePage searchMovies(String query, int page);
 //       → Buscar filmes por texto
 //
-//   Movie getMovieDetails(Long movieId, String userId);
+//   Movie getMovieDetails(Long movieId, Long userId);
 //       → Detalhes do filme + status de favorito/watchLater do usuário
 //
 //   MoviePage getPopularMovies(int page);
@@ -25,20 +25,34 @@ import org.springframework.data.domain.Pageable;
 //   MovieCredits getMovieCredits(Long movieId);
 //       → Elenco e equipe do filme
 //
-//   void addFavorite(Long movieId, String userId);
+//   void addFavorite(Long movieId, Long userId);
 //       → Favoritar filme (máximo 20 por usuário!)
 //
-//   void removeFavorite(Long movieId, String userId);
+//   void removeFavorite(Long movieId, Long userId);
 //       → Remover filme dos favoritos
 //
-//   Page<Movie> getFavorites(String userId, Pageable pageable);
+//   Page<Movie> getFavorites(Long userId, Pageable pageable);
 //       → Listar favoritos do usuário (paginado)
 //
-//   void addWatchLater(Long movieId, String userId);
+//   void addWatchLater(Long movieId, Long userId);
 //       → Marcar filme para assistir depois
 
 public interface MovieUseCasePort {
 
-    // TODO 3: Defina os 8 métodos acima
+    MoviePage searchMovies(String query, int page);
+
+    Movie getMovieDetails(Long movieId, Long userId);
+
+    MoviePage getPopularMovies(int page);
+
+    MovieCredits getMovieCredits(Long movieId);
+
+    void addFavorite(Long movieId, Long userId);
+
+    void removeFavorite(Long movieId, Long userId);
+
+    Page<Movie> getFavorites(Long userId, Pageable pageable);
+
+    void addWatchLater(Long movieId, Long userId);
 
 }
