@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS favorites (
     id          BIGSERIAL    PRIMARY KEY,
     movie_id    BIGINT       NOT NULL,
-    user_id     VARCHAR(255) NOT NULL,
+    user_id     BIGINT       NOT NULL,
     title       VARCHAR(500) NOT NULL,
     poster_path VARCHAR(500),
     overview    TEXT,

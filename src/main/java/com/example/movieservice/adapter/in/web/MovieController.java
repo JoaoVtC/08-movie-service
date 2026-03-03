@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 //   1. Injetar MovieUseCasePort via construtor
 //   2. Criar os 7 endpoints acima
 //   3. Retornar ResponseEntity com status codes adequados (200, 201, 204, 404)
-//   4. O userId pode ser hardcoded como "user-1" por enquanto (até implementar JWT)
+//   4. O userId pode ser hardcoded como 1L por enquanto (até implementar JWT)
 //
 // TODO 11: Documentar endpoints com Swagger:
 //   - @Tag(name = "Movies", description = "Endpoints de filmes")
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.*;
 //
 // TODO 12: Após implementar JWT, extrair o userId do token:
 //   - Receber Authentication ou @AuthenticationPrincipal nos métodos
-//   - Substituir "user-1" pelo userId real do token
+//   - Substituir 1L pelo userId real do token
 
 @RestController
 @RequestMapping("/api/movies")
@@ -62,7 +62,7 @@ public class MovieController {
     // @PostMapping("/{id}/favorite")
     // @Operation(summary = "Favoritar um filme")
     // public ResponseEntity<Void> addFavorite(@PathVariable Long id) {
-    //     String userId = "user-1"; // TODO 12: extrair do JWT
+    //     Long userId = 1L; // TODO 12: extrair do JWT
     //     movieUseCase.addFavorite(id, userId);
     //     return ResponseEntity.status(HttpStatus.CREATED).build();
     // }

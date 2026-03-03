@@ -15,7 +15,7 @@ public class WatchLaterEntity {
     private Long movieId;
 
     @Column(name = "user_id", nullable = false)
-    private String userId;
+    private Long userId;
 
     @Column(nullable = false, length = 500)
     private String title;
@@ -38,8 +38,8 @@ public class WatchLaterEntity {
     public Long getMovieId() { return movieId; }
     public void setMovieId(Long movieId) { this.movieId = movieId; }
 
-    public String getUserId() { return userId; }
-    public void setUserId(String userId) { this.userId = userId; }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }

@@ -29,27 +29,27 @@ public class FavoriteRepositoryAdapter implements FavoriteRepositoryPort {
     }
 
     @Override
-    public Optional<FavoriteEntity> findByMovieIdAndUserId(Long movieId, String userId) {
+    public Optional<FavoriteEntity> findByMovieIdAndUserId(Long movieId, Long userId) {
         return jpaRepository.findByMovieIdAndUserId(movieId, userId);
     }
 
     @Override
-    public Page<FavoriteEntity> findByUserId(String userId, Pageable pageable) {
+    public Page<FavoriteEntity> findByUserId(Long userId, Pageable pageable) {
         return jpaRepository.findByUserId(userId, pageable);
     }
 
     @Override
-    public void deleteByMovieIdAndUserId(Long movieId, String userId) {
+    public void deleteByMovieIdAndUserId(Long movieId, Long userId) {
         jpaRepository.deleteByMovieIdAndUserId(movieId, userId);
     }
 
     @Override
-    public long countByUserId(String userId) {
+    public long countByUserId(Long userId) {
         return jpaRepository.countByUserId(userId);
     }
 
     @Override
-    public boolean existsByMovieIdAndUserId(Long movieId, String userId) {
+    public boolean existsByMovieIdAndUserId(Long movieId, Long userId) {
         return jpaRepository.existsByMovieIdAndUserId(movieId, userId);
     }
 }

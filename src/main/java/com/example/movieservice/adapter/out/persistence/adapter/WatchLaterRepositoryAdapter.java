@@ -26,17 +26,17 @@ public class WatchLaterRepositoryAdapter implements WatchLaterRepositoryPort {
     }
 
     @Override
-    public Optional<WatchLaterEntity> findByMovieIdAndUserId(Long movieId, String userId) {
+    public Optional<WatchLaterEntity> findByMovieIdAndUserId(Long movieId, Long userId) {
         return jpaRepository.findByMovieIdAndUserId(movieId, userId);
     }
 
     @Override
-    public void deleteByMovieIdAndUserId(Long movieId, String userId) {
+    public void deleteByMovieIdAndUserId(Long movieId, Long userId) {
         jpaRepository.deleteByMovieIdAndUserId(movieId, userId);
     }
 
     @Override
-    public boolean existsByMovieIdAndUserId(Long movieId, String userId) {
+    public boolean existsByMovieIdAndUserId(Long movieId, Long userId) {
         return jpaRepository.existsByMovieIdAndUserId(movieId, userId);
     }
 }

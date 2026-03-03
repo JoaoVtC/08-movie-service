@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS watch_later (
     id          BIGSERIAL    PRIMARY KEY,
     movie_id    BIGINT       NOT NULL,
-    user_id     VARCHAR(255) NOT NULL,
+    user_id     BIGINT       NOT NULL,
     title       VARCHAR(500) NOT NULL,
     poster_path VARCHAR(500),
     created_at  TIMESTAMP    NOT NULL DEFAULT NOW(),

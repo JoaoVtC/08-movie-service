@@ -12,9 +12,9 @@ public interface WatchLaterRepositoryPort {
 
     WatchLaterEntity save(WatchLaterEntity watchLater);
 
-    Optional<WatchLaterEntity> findByMovieIdAndUserId(Long movieId, String userId);
+    Optional<WatchLaterEntity> findByMovieIdAndUserId(Long movieId, Long userId);
 
-    void deleteByMovieIdAndUserId(Long movieId, String userId);
+    void deleteByMovieIdAndUserId(Long movieId, Long userId);
 
-    boolean existsByMovieIdAndUserId(Long movieId, String userId);
+    boolean existsByMovieIdAndUserId(Long movieId, Long userId);
 }

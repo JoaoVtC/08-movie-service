@@ -14,13 +14,13 @@ public interface FavoriteRepositoryPort {
 
     FavoriteEntity save(FavoriteEntity favorite);
 
-    Optional<FavoriteEntity> findByMovieIdAndUserId(Long movieId, String userId);
+    Optional<FavoriteEntity> findByMovieIdAndUserId(Long movieId, Long userId);
 
-    Page<FavoriteEntity> findByUserId(String userId, Pageable pageable);
+    Page<FavoriteEntity> findByUserId(Long userId, Pageable pageable);
 
-    void deleteByMovieIdAndUserId(Long movieId, String userId);
+    void deleteByMovieIdAndUserId(Long movieId, Long userId);
 
-    long countByUserId(String userId);
+    long countByUserId(Long userId);
 
-    boolean existsByMovieIdAndUserId(Long movieId, String userId);
+    boolean existsByMovieIdAndUserId(Long movieId, Long userId);
 }

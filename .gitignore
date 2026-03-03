@@ -1,0 +1,93 @@
+# =========================
+# Java / Maven / Spring
+# =========================
+/target/
+/build/
+out/
+
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+
+# Maven wrapper cache
+.mvn/wrapper/maven-wrapper.jar
+
+# Spring Boot
+*.log
+logs/
+
+# =========================
+# IDE / Editor
+# =========================
+# VS Code
+.vscode/
+
+# IntelliJ / IDEA
+.idea/
+*.iml
+
+# Eclipse / STS
+.project
+.classpath
+.settings/
+.springBeans
+.sts4-cache/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Environment / secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# Local configs and certs
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+
+# =========================
+# Docker / containers
+# =========================
+*.pid
+*.seed
+*.pid.lock
+
+# =========================
+# Node (if used for tooling)
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Test / coverage outputs
+# =========================
+coverage/
+*.exec
+
+# =========================
+# HTTP client local files
+# =========================
+*.http.env.json
