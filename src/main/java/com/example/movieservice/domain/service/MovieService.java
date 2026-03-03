@@ -1,5 +1,9 @@
 package com.example.movieservice.domain.service;
 
+import com.example.movieservice.domain.model.Favorite;
+import com.example.movieservice.domain.model.Movie;
+import com.example.movieservice.domain.model.MovieCredits;
+import com.example.movieservice.domain.model.MoviePage;
 import com.example.movieservice.domain.port.in.MovieUseCasePort;
 import com.example.movieservice.domain.port.out.FavoriteRepositoryPort;
 import com.example.movieservice.domain.port.out.MovieApiPort;
@@ -48,6 +52,67 @@ public class MovieService implements MovieUseCasePort /* TODO 4: implementar os 
         this.watchLaterRepository = watchLaterRepository;
     }
 
+    public MoviePage searchMovies(String query, int page){
+        log.info("Buscando filmes com query='{}', page={}", query, page);
+        return movieApiPort.searchMovies(query, page);
+    };
+
+    public Movie getMovieDetails(Long movieId, Long userId){
+        boolean existFavorite = favoriteRepository.existsByMovieIdAndUserId(movieId, userId);
+        boolean existWatchLater = watchLaterRepository.existsByMovieIdAndUserId(movieId, userId);
+        Movie movieFound = movieApiPort.getMovieDetails(movieId);
+
+        Movie movie = new Movie(
+                movieFound.id(),
+                movieFound.title(),
+                movieFound.overview(),
+                movieFound.posterPath(),
+                movieFound.backdropPath(),
+                movieFound.releaseDate(),
+                movieFound.voteAverage(),
+                movieFound.voteCount(),
+                movieFound.popularity(),
+                existFavorite,
+                existWatchLater
+        );
+
+         log.info("Filme de id={} buscado para usuário de id={}", movieId, userId);
+        return movie;
+    }
+
+    public MoviePage getPopularMovies(int page){
+        return movieApiPort.getPopularMovies(page);
+    }
+
+    public MovieCredits getMovieCredits(Long movieId){
+        return movieApiPort.getMovieCredits(movieId);
+    }
+
+    @Transactional
+    public void addFavorite(Long movieId, Long userId){
+        Movie movieFound = movieApiPort.getMovieDetails(movieId);
+
+        Favorite favorite = new Favorite(
+                null,
+                movieFound.id(),
+                userId,
+                movieFound.title(),
+                movieFound.posterPath(),
+                movieFound.overview(),
+                movieFound.voteAverage(),
+                null
+        );
+
+        log.info("Favorito montado para usuário {} e filme {}", userId, favorite.movieId());
+    }
+
+    @Transactional
+    public void removeFavorite(Long movieId, Long userId){
+        favoriteRepository.deleteByMovieIdAndUserId(movieId, userId);
+        log.info("Favorito deletado para usuário {} e filme {}", userId, movieId);
+    }
+
+
     // TODO 4: Implementar os métodos do MovieUseCasePort aqui
     //
     // Exemplo de implementação do searchMovies:
@@ -62,7 +127,7 @@ public class MovieService implements MovieUseCasePort /* TODO 4: implementar os 
     //
     // @Override
     // @Transactional
-    // public void addFavorite(Long movieId, String userId) {
+    // public void addFavorite(Long movieId, Long userId) {
     //     log.info("Adicionando filme {} aos favoritos do usuário {}", movieId, userId);
     //
     //     // 1. Verificar se já é favorito
