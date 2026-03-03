@@ -1,5 +1,9 @@
 package com.example.movieservice.adapter.out.rest;
 
+import com.example.movieservice.adapter.out.rest.dto.TmdbCreditsResponse;
+import com.example.movieservice.adapter.out.rest.dto.TmdbMovieMapper;
+import com.example.movieservice.adapter.out.rest.dto.TmdbMovieResponse;
+import com.example.movieservice.adapter.out.rest.dto.TmdbSearchResponse;
 import com.example.movieservice.domain.model.Movie;
 import com.example.movieservice.domain.model.MovieCredits;
 import com.example.movieservice.domain.model.MoviePage;
@@ -7,6 +11,7 @@ import com.example.movieservice.domain.port.out.MovieApiPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
 
 // TODO 2: Implementar o Adapter REST TheMovieDbAdapter
 //
@@ -46,12 +51,35 @@ public class TheMovieDbAdapter implements MovieApiPort /* TODO 2: implementar os
     //
     // Exemplo de implementação do searchMovies:
     //
-    // @Override
-    // public MoviePage searchMovies(String query, int page) {
-    //     log.info("Buscando filmes no TheMovieDB: query='{}', page={}", query, page);
-    //     TmdbSearchResponse response = client.searchMovies(query, page, LANGUAGE);
-    //     return TmdbMovieMapper.toMoviePage(response);
-    // }
+    @Override
+    public MoviePage searchMovies(String query, int page) {
+         log.info("Buscando filmes no TheMovieDB: query='{}', page={}", query, page);
+         TmdbSearchResponse response = client.searchMovies(query, page, LANGUAGE);
+         return TmdbMovieMapper.toMoviePage(response);
+    }
+
+    @Override
+    public Movie getMovieDetails(Long movieId){
+        log.info("Buscando filmes no TheMovieDB: id='{}'", movieId);
+         TmdbMovieResponse response = client.getMovieDetails(movieId, LANGUAGE);
+         return TmdbMovieMapper.toMovie(response);
+    };
+
+    @Override
+    public MoviePage getPopularMovies(int page){
+         log.info("Buscando filmes no TheMovieDB: page='{}'", page);
+         TmdbSearchResponse response = client.getPopularMovies(page, LANGUAGE);
+         return TmdbMovieMapper.toMoviePage(response);
+    };
+
+    @Override
+    public MovieCredits getMovieCredits(@PathVariable("movieId") Long movieId){
+        log.info("Buscando filmes no TheMovieDB: movieId='{}'", movieId);
+         TmdbCreditsResponse response = client.getMovieCredits(movieId);
+         return TmdbMovieMapper.toMovieCredits(response);
+    }
+
+
 
     // TODO 6: Exemplo de fallback para Resilience4j:
     //
